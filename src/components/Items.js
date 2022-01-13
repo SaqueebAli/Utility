@@ -7,9 +7,9 @@ const items=makeStyles({
         width:"99%",
         height:"26px",
         backgroundColor: "#253053",
-        border: "1px solid whitesmoke" ,
+        border: "2px solid whitesmoke" ,
         textAlign:"center",
-        
+               
 
       }
 })

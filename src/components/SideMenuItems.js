@@ -10,7 +10,7 @@ const sidemenuItems=makeStyles({
         width:"99%",
         height:"100%",
         backgroundColor: "#253053",
-        borderRight: "1px solid #253053", 
+        borderRight: "2px solid #253053", 
         color:"white",
         justifyContent:"center",
         alignItems:"center"

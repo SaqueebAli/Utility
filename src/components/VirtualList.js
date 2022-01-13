@@ -29,14 +29,14 @@ const items=makeStyles({
 
       },
       heading:{        
-        border: "1px solid whitesmoke" ,
+        border: "2px solid whitesmoke" ,
         textAlign:"center",
         color:"whitesmoke",
         backgroundColor:"#253053",
         fontWeight:"bolder",
-       borderRadius:"5%",
-       position:"relative",
-       fontSize:"0.95rem",
+        borderRadius:"45px",
+        position:"relative",
+        fontSize:"0.95rem",
         padding:"2px",
         boxSizing: "border-box"     
        
@@ -49,7 +49,7 @@ const items=makeStyles({
 
 export default function VirtualList(props) {
   
-  const [FieldName1,setFieldName1,FieldName2,setFieldName2,checkedData,setCheckedData,fileName,setFileName]=useContext(FieldContext);
+  const [FieldName1,setFieldName1,FieldName2,setFieldName2,checkedData,setCheckedData]=useContext(FieldContext);
 
   
 
@@ -60,10 +60,7 @@ export default function VirtualList(props) {
    
 
  }
- useEffect(()=>{
 
-  console.log(checkedData)
- },[checkedData])
     
     const cache = React.useRef(
       new CellMeasurerCache({
@@ -78,7 +75,7 @@ export default function VirtualList(props) {
         <div style={{ width: "180px", height: "400px" }}>
         
 
-        {props.Fields.length!=0 && <p className={classes.heading}>{props.name}</p>}
+        {props.Fields.length!=0 && <p className={classes.heading}>{props.filename}</p>}
         
             <AutoSizer>
               {({ width, height }) => (

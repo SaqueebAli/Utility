@@ -46,16 +46,21 @@ function BTN(props) {
   
   
   const classes=useStyles();
-  const [names,setNames]=useState(props.name)
-  const [FieldName1,setFieldName1,FieldName2,setFieldName2]=useContext(FieldContext);
+  
+  const [FieldName1,setFieldName1,FieldName2,setFieldName2,checkedData,setCheckedData,fileName,setFileName]=useContext(FieldContext);
      
 
   async function ChangeValue(evt){  
    var selectedFile=evt.target.files[0];
    var keys=evt.target.id
-   
-   
-   setNames(selectedFile.name);
+   if(props.fs==="File1"){
+
+     setFileName({...fileName,"FileName1":[selectedFile.name]})
+   }else{
+
+     setFileName({...fileName,"FileName2":[selectedFile.name]})
+   }
+  
    var filename=(selectedFile.name).split('.')[0]+".json";
    filename=filename+"/"+props.fs;
     var reader = new FileReader();
@@ -71,7 +76,7 @@ function BTN(props) {
             }); 
             
             var values=Object.keys(rowObject[0])
-            if(keys==="Upload file1"){
+            if(keys==="File1"){
               
               setFieldName1(values )    
               
@@ -101,9 +106,9 @@ function BTN(props) {
     
     
     return (<div className="uploadField">
-    <label className={classes.label} htmlFor={props.name} id={props.name+"1"} >{names}
+    <label className={classes.label} htmlFor={props.fs} id={props.fs+"1"} >{props.design}
    </label>
-   <input className={classes.input} type="file" id={props.name} name= {props.name} onChange={ChangeValue}/>
+   <input className={classes.input} type="file" id={props.fs} name= {props.fs} onChange={ChangeValue}/>
     
     </div>);
 }

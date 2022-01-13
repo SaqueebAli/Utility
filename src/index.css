@@ -47,8 +47,6 @@ label{
 .uploadField{
 border-radius : 45px;
 position: relative;
-/* border: 2px solid #4f091d;
-background-color:#d5d5d5; */
 width: 90%;
 height: 45px;
 justify-content:center;
@@ -59,6 +57,7 @@ text-overflow: ellipsis;
 }
 .uploadField>label{
   text-align: center;
+  border: 2px solid whitesmoke;
   text-overflow: ellipsis; 
   position:absolute;
   z-index: index 1;

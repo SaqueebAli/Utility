@@ -25,8 +25,8 @@ const useStyles=makeStyles({
 
 
 function FileUpload(props){
-    const [FieldName1,setFieldName1,FieldName2,setFieldName2]=useContext(FieldContext);
-    
+    const [FieldName1,setFieldName1,FieldName2,setFieldName2,checkedData,setCheckedData,fileName,setFileName]=useContext(FieldContext);
+   
     const classes=useStyles();
     return(
 
@@ -35,19 +35,19 @@ function FileUpload(props){
            
           
            <Grid item xs={3}>
-           <BTN name="Upload file1" fs="File1"/>
-           <BTN name="Upload file2" fs="File2"/>
+           <BTN  fs="File1"  design={fileName["FileName1"]}/>
+           <BTN  fs="File2"  design={fileName["FileName2"]}/>
            </Grid>
            <Grid item xs={2}></Grid>
            <Grid item xs={2}>
-           <VirtualList name="File1" Fields={FieldName1}/> 
+           <VirtualList name="File1" Fields={FieldName1} filename={fileName["FileName1"]}/> 
            
            </Grid>
            
            <Grid item xs={2} container direction='row'>
 
           
-           <VirtualList name="File2" Fields={FieldName2}/>
+           <VirtualList name="File2" Fields={FieldName2} filename={fileName["FileName2"]}/>
             
            
            </Grid>
