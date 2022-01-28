@@ -1,5 +1,6 @@
 import React,{useContext,useEffect} from 'react';
 import { makeStyles,withStyles } from '@material-ui/styles';
+import { Link } from 'react-router-dom' 
 
 
 const items=makeStyles({
@@ -18,7 +19,7 @@ function Items(props){
     
     const classes=items();
     return(
-       <a href={props.name==="Home"? "/":"Analysis"} style={{ textDecoration: 'none', color:"white" }} ><p className={classes.Items} >{props.name}</p></a> 
+       <Link to={props.name==="Home"? "/":"Analysis"} style={{ textDecoration: 'none', color:"white" }} ><p className={classes.Items} >{props.name}</p></Link> 
        
           
     );}

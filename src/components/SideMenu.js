@@ -11,6 +11,7 @@ const sidemenuStyles=makeStyles({
         left: "0px",
         width:"240px",
         height:"100%",
+        bottom:"0px",
         backgroundColor: "#253053"
       }
 })

@@ -47,19 +47,10 @@ const items=makeStyles({
      
 })
 
-export default function VirtualList(props) {
+export default function VirtualListFields(props) {
   
   const [FieldName1,setFieldName1,FieldName2,setFieldName2,checkedData,setCheckedData,fileName,setFileName,File1,File2,setFile1,setFile2]=useContext(FieldContext);
 
-  
-
- function onValueChange(event){
-
-  setCheckedData({...checkedData,[event.target.name]:event.target.value})
-
-   
-
- }
 
     
     const cache = React.useRef(
@@ -96,19 +87,15 @@ export default function VirtualList(props) {
                         columnIndex={0}
                         rowIndex={index}
                       >
-                      {
+                      {<>
                         <div   className={classes.Items} style={style}>
-                        
-                        
-              
-                       <label  htmlFor={person}>{person}</label>
-                        <input   style={{float:"right"}} type="radio" name={props.name} id={person+index} value={person} onChange={onValueChange}></input>
-                         
+                                  
+                       <label  htmlFor={person}>{person}</label>                        
                          
                        </div>
                        
 
-                      
+                      </>
                       
                       }
                   

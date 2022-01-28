@@ -2,12 +2,14 @@ import React,{useRef,useState,useContext} from "react";
 import * as XLSX from 'xlsx';
 import {FieldContext} from "../context/FieldContext";
 import {makeStyles,withStyles } from '@material-ui/core';
+import CircularIntegration from "./CircularIntegration"
+
 
 
 
 const useStyles=makeStyles({
   input:{
-     
+    // display:"none", 
     position: "absolute",
     textOverflow: "ellipsis", 
     top: "0",
@@ -16,6 +18,7 @@ const useStyles=makeStyles({
    width: "100%",
     height:"100%",
    opacity: "0",
+   zIndex:"-1",
    boxShadow :" 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)"
       
   }
@@ -35,7 +38,8 @@ const useStyles=makeStyles({
   justifyContent:"center",
   textAlign: "center",
   marginBottom: "10px",
-  textOverflow: "ellipsis" 
+  textOverflow: "ellipsis" ,
+ 
     
   }
   
@@ -47,8 +51,10 @@ function BTN(props) {
   
   const classes=useStyles();
   
-  const [FieldName1,setFieldName1,FieldName2,setFieldName2,checkedData,setCheckedData,fileName,setFileName]=useContext(FieldContext);
-     
+  const [FieldName1,setFieldName1,FieldName2,setFieldName2,checkedData,setCheckedData,fileName,setFileName,File1,File2,setFile1,setFile2]=useContext(FieldContext);
+  const [success, setSuccess] = React.useState(false); 
+  const [loading, setLoading] = React.useState(false);
+
 
   async function ChangeValue(evt){  
    var selectedFile=evt.target.files[0];
@@ -60,7 +66,7 @@ function BTN(props) {
 
      setFileName({...fileName,"FileName2":[selectedFile.name]})
    }
-  
+   setLoading(true);
    var filename=(selectedFile.name).split('.')[0]+".json";
    filename=filename+"/"+props.fs;
     var reader = new FileReader();
@@ -95,6 +101,9 @@ function BTN(props) {
           body:formData ,
           cache: "no-store",
           processData: true
+        }) .then(response =>{response.json();
+          setSuccess(true)
+          setLoading(false);
         });
         });
         };
@@ -105,12 +114,15 @@ function BTN(props) {
   
     
     
-    return (<div className="uploadField">
+    return (<><div className="uploadField" >
     <label className={classes.label} htmlFor={props.fs} id={props.fs+"1"} >{props.design}
+   <input className={classes.input} type="file" title="" id={props.fs} name= {props.fs} onChange={ChangeValue}/>
    </label>
-   <input className={classes.input} type="file" id={props.fs} name= {props.fs} onChange={ChangeValue}/>
+
     
-    </div>);
+    </div>
+   <CircularIntegration success={success} loading={loading} style={{ minWidth:"23px",maxWidth:"23px",margin:"0px",width:"23px"}}/>
+</>);
 }
 
 

@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  border:0;
+  padding: 0;
   font-family: 'Roboto',-apple-system, BlinkMacSystemFont, 'Segoe UI',  'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -8,9 +10,11 @@ body {
   background-image: url(./bgn.jpg) ;
   background-size: cover;
   width: 100%;
-  height: 100%;
+  height:100vh;
 }
-
+#root{
+height:100vh;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -47,11 +51,11 @@ label{
 .uploadField{
 border-radius : 45px;
 position: relative;
-width: 90%;
+/* width: 90%; */
 height: 45px;
 justify-content:center;
-text-align: center;
-margin-bottom: 10px;
+/* text-align: center; */
+/* margin-bottom: 10px; */
 text-overflow: ellipsis; 
 
 }
@@ -61,7 +65,7 @@ text-overflow: ellipsis;
   text-overflow: ellipsis; 
   position:absolute;
   z-index: index 1;
-  bottom:14px;
+  /* bottom:14px; */
 font-size:.95rem;
 font-weight:bold;
 
@@ -78,3 +82,34 @@ font-weight:bold;
   left:8px;
   border-radius: 45px;
 } */
+::-webkit-scrollbar{
+  width: 1em;
+  height: 1em;
+}
+::-webkit-scrollbar-track{
+  background:#bbc3c0;
+  border: .2em solid #bbc3c0;
+  border-radius:100vw;
+  margin-block: .5em;
+}
+::-webkit-scrollbar-thumb{
+  background:#24a0ed;
+  border: .2em solid whitesmoke;
+  border-radius:100vw;
+}
+
+@supports(scrollbar-color: red blue){
+  *{
+    scrollbar-color:hsl(120 100% 20% / 1) hsl(120 75% 50% / 1)
+   
+  }
+}
+::weebkit-scrollbar-thumb:hover{
+  background:hsl(120 100% 10% / 1);
+}
+@keyframes pulse {
+  100%{
+      opacity:0;
+  }
+  
+}

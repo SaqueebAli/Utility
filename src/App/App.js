@@ -17,8 +17,8 @@ function App() {
     
 
 
-     <SideMenu/>
      <Router>
+     <SideMenu/>
      <Routes>
 
       <Route exact path='/' element={<FileUpload/>}></Route>

@@ -24,7 +24,7 @@ function SideMenuItems(){
         <div className={classes.sideMenuItems}>
         
         <Items name="Home"/>
-        <Items name="Analysis"/>
+        {/* <Items name="Analysis"/> */}
         </div>
     );}
 

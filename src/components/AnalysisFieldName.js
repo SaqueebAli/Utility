@@ -5,7 +5,7 @@ import { makeStyles,withStyles } from '@material-ui/styles';
 
 const items=makeStyles({
     Items:{        
-        width:"99%",
+        width:"98%",
         height:"26px",
         border: "1px solid whitesmoke" ,
         textAlign:"center",
@@ -17,18 +17,31 @@ const items=makeStyles({
 
       },
       listItems:{
-          backgroundColor:"white",
+          // backgroundColor:"white",
           height:"400px",
           width:"100%",
           overflow:"auto",
           borderRadius:"2%"
+        },
+        heading:{        
+          border: "2px solid whitesmoke" ,
+          textAlign:"center",
+          color:"whitesmoke",
+          backgroundColor:"#253053",
+          fontWeight:"bolder",
+          borderRadius:"45px",
+          position:"relative",
+          fontSize:"0.95rem",
+          padding:"2px",
+          boxSizing: "border-box"     
         }
+        
 })
 
 function Items(props){
     const classes=items();
     return(
-       <a href="" style={{ textDecoration: 'none'}}><p className={classes.Items} style={{backgroundColor:props.color}}>{props.name}</p></a> 
+       <p className={classes.Items} style={{backgroundColor:props.color}}>{props.name}</p>
        
           
     );}
@@ -39,19 +52,22 @@ export default function AnalysisFieldName(props) {
     }
     const classes=items();
   
-   function handleScroll(e) {
-        let element = e.target
-        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-        //   alert("scrollend for: "+ props.name)
-        }
-      }
+  //  function handleScroll(e) {
+  //       let element = e.target
+  //       if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+  //       //   alert("scrollend for: "+ props.name)
+  //       }
+  //     }
     
-  return (
-       <div  className={classes.listItems}  onScroll={handleScroll} >
+  return (<>
+
+    {Object.keys(props.uniqueFieldName).length!=0 && <p className={classes.heading}>{props.filename}</p>}
+       <div  className={classes.listItems}   >
        {uniqueFields && uniqueFields.map((e,i)=>{
-       return <Items name={e} key={i} color={props.uniqueFieldName[e]}/>
+       return <Items name={e.replace("@","")} key={i} color={props.uniqueFieldName[e]}/>
        })}
        
     </div>
+  </>
   );
 }
