@@ -50,8 +50,9 @@ const useStyles=makeStyles({
 
 function FileUpload(){
     const [FieldName1,setFieldName1,FieldName2,setFieldName2,checkedData,setCheckedData,fileName,setFileName,File1,File2,setFile1,setFile2,PrimaryKey,setPrimaryKey,Loading,setLoading]=useContext(FieldContext);
-   function CompareHandle(){
-    //    console.log(checkedData)
+  
+    function CompareHandle(){
+       console.log(checkedData)
        fetch("http://localhost:3500/uploadKeygen",{
           method: 'POST',
           body:JSON.stringify(checkedData),
@@ -85,14 +86,14 @@ function FileUpload(){
            </Grid>
            <Grid item xs={1} ></Grid>
            <Grid item xs={2} >
-           <VirtualList name="File1" Fields={FieldName1} filename={fileName["FileName1"]}/> 
-            {/* <VirtualisedDND data={FieldName1} filename="File 1" name="File 1"/>           */}
+           {/* <VirtualList name="File1" Fields={FieldName1} filename={fileName["FileName1"]}/>  */}
+            {FieldName1.length>0  && <VirtualisedDND filename="File 1" name="File1"/> }         
            </Grid>
            
            <Grid item xs={2} >
-
+           {FieldName2.length>0 && <VirtualisedDND filename="File 2" name="File2"/>}    
           
-           <VirtualList name="File2" Fields={FieldName2} filename={fileName["FileName2"]}/>
+           {/* <VirtualList name="File2" Fields={FieldName2} filename={fileName["FileName2"]}/> */}
             
            
            </Grid>

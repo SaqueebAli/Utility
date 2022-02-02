@@ -58,7 +58,7 @@ const button=makeStyles({
 const active={borderRadius:"45px",border: "3px solid #24a0ed" ,}
 export default function VirtualListBTN(props) {
 
-  const [FieldName1,setFieldName1,FieldName2,setFieldName2,checkedData,setCheckedData,fileName,setFileName,File1,File2,setFile1,setFile2]=useContext(FieldContext);
+  const [FieldName1,setFieldName1,FieldName2,setFieldName2,checkedData,setCheckedData,fileName,setFileName,File1,File2,setFile1,setFile2,PrimaryKey,setPrimaryKey,Loading,setLoading]=useContext(FieldContext);
  const [clicked,setClicked]=useState()
   const classes=button();
   function Button(btnprops){
@@ -100,7 +100,7 @@ export default function VirtualListBTN(props) {
           <div style={{ width: "100%", height: "70%" }}>
           
   
-          {(Object.keys(props.Fields)).length!=0 && <p className={classes.heading}>Primary Key</p>}
+          {(Object.keys(PrimaryKey)).length!=0 && <p className={classes.heading}>Primary Key</p>}
           
               <AutoSizer>
                 {({ width, height }) => (
@@ -109,9 +109,9 @@ export default function VirtualListBTN(props) {
                     height={height}
                     rowHeight={26}
                     deferredMeasurementCache={cache.current}
-                    rowCount={(Object.keys(props.Fields)).length}
+                    rowCount={(Object.keys(PrimaryKey)).length}
                     rowRenderer={({ key, index, style, parent }) => {
-                      const recordID = (Object.keys(props.Fields))[index];
+                      const recordID = (Object.keys(PrimaryKey))[index];
       
                       return (
                         <CellMeasurer
@@ -122,7 +122,7 @@ export default function VirtualListBTN(props) {
                           rowIndex={index}
                         >
                         {                 
-                          <Button value={recordID} id={recordID+index}  color={props.Fields[recordID]} style={style}/>
+                          <Button value={recordID} id={recordID+index}  color={PrimaryKey[recordID]} style={style}/>
                           
                         
                         }

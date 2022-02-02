@@ -35,7 +35,8 @@ const useStyles=makeStyles({
 
 function Analysis(){
     const [FieldName1,setFieldName1,FieldName2,setFieldName2,checkedData,setCheckedData,fileName,setFileName,File1,File2,setFile1,setFile2,PrimaryKey,setPrimaryKey,Loading,setLoading]=useContext(FieldContext);
-    const [uniqueFieldName,setUniqueFieldName]=useState({}); 
+    const [uniqueFieldName1,setUniqueFieldName1]=useState({}); 
+    const [uniqueFieldName2,setUniqueFieldName2]=useState({}); 
     
     useEffect(() => {
         let isMounted = true; 
@@ -49,14 +50,23 @@ function Analysis(){
 
      
     useEffect(()=> {
-        fetch('http://localhost:3500/uniqueFieldsName')
+        fetch('http://localhost:3500/uniqueFieldsName1')
         .then(response =>response.json())            
         .then(data =>{
              
-            setUniqueFieldName(data);
+            setUniqueFieldName1(data);
         }) ;
-        
-        } ,Loading) 
+       
+        } ,[Loading]) 
+    useEffect(()=> {
+        fetch('http://localhost:3500/uniqueFieldsName2')
+        .then(response =>response.json())            
+        .then(data =>{
+             
+            setUniqueFieldName2(data);
+        }) ;
+       
+        } ,[Loading]) 
 
       
         // console.log(uniqueFieldName)
@@ -66,7 +76,7 @@ function Analysis(){
        <Grid container className={classes.root} direction='row' spacing={1} >        
           <Grid item xs={2}>
           {Loading && <VirtualListBTNSkeleton/>}
-          {!Loading && <VirtualListBTN name="File1" Fields={PrimaryKey} filename={fileName["FileName1"]}/>} 
+          {!Loading && PrimaryKey && <VirtualListBTN name="File1"  filename={fileName["FileName1"]}/>} 
           {/* <VirtualListBTN /> */}
           {/* <AnalysisFieldName name="column Name" uniqueFieldName={PrimaryKey} filename="File 1"/> */}
            </Grid>
@@ -74,7 +84,7 @@ function Analysis(){
            </Grid>
            <Grid item xs={2}>
 
-          {!Loading  && <AnalysisFieldName name="column Name" uniqueFieldName={uniqueFieldName} filename="File 1"/>}
+          {!Loading  && <AnalysisFieldName name="column Name" uniqueFieldName={uniqueFieldName1} filename="File 1"/>}
           {Loading && <AnalysisFieldNameSkeleton/>}
            {/* <VirtualListFields name="File1" Fields={FieldName1} filename={fileName["FileName1"]}/> */}
            </Grid>
@@ -90,7 +100,7 @@ function Analysis(){
           
            </Grid>
            <Grid item xs={2}>
-           {!Loading &&  <AnalysisFieldName name="column Name" uniqueFieldName={uniqueFieldName} filename="File 2" />}
+           {!Loading &&  <AnalysisFieldName name="column Name" uniqueFieldName={uniqueFieldName2} filename="File 2" />}
            {Loading && <AnalysisFieldNameSkeleton/>}
            </Grid>
        </Grid>
